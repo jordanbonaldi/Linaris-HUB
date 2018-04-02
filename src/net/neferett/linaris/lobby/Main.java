@@ -113,7 +113,11 @@ public class Main extends API {
 		i = this;
 		this.hologramManager = JavaPlugin.getPlugin(HologramPlugin.class).getHologramManager();
 
-		this.openServer();
+		// this.openServer();
+
+		/* DEV MODE */
+		this.getInfo().setCanJoin(false, false);
+		this.getInfo().setCanSee(false, false);
 		this.handleWorld();
 
 		this.setScoreBoard(Scoreboard.class);
