@@ -1,21 +1,40 @@
 package net.neferett.linaris.lobby;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
-import org.bukkit.entity.Monster;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.sainttx.holograms.api.Hologram;
 import com.sainttx.holograms.api.HologramManager;
 import com.sainttx.holograms.api.HologramPlugin;
 
 import net.neferett.linaris.api.API;
+import net.neferett.linaris.lobby.handlers.HologramsManager;
 import net.neferett.linaris.lobby.handlers.Scoreboard;
 import net.neferett.linaris.lobby.handlers.games.GamesManager;
-import net.neferett.linaris.lobby.handlers.players.PlayerManager;
-import net.neferett.linaris.lobby.items.epicchest.EpicChestItem;
+import net.neferett.linaris.lobby.handlers.items.ItemsManager;
+import net.neferett.linaris.lobby.handlers.items.magicbox.MagicboxItem;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.Boutique;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.Lang;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.MainMenuItem;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.Preferences;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.Stats;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.SwitchHub;
+import net.neferett.linaris.lobby.handlers.items.mainmenu.spawn;
+import net.neferett.linaris.lobby.listeners.InteractOnNPC;
+import net.neferett.linaris.lobby.listeners.InventoryListener;
+import net.neferett.linaris.lobby.listeners.JoinAndLeave;
+import net.neferett.linaris.lobby.listeners.MoveListener;
 import net.neferett.linaris.lobby.listeners.NaturalListener;
-import net.neferett.linaris.lobby.listeners.PlayerConnectionListener;
+import net.neferett.linaris.lobby.listeners.PlayerChat;
 import net.neferett.linaris.lobby.listeners.PlayerEvents;
+import net.neferett.linaris.lobby.minigames.GamesEnum;
+import net.neferett.linaris.lobby.minigames.GamesThread;
 import net.neferett.linaris.mistery.mounts.MountManager;
 import net.neferett.linaris.mistery.mounts.PlayerMountListener;
 import net.neferett.linaris.utils.tasksmanager.TaskManager;
@@ -28,15 +47,24 @@ public class Main extends API {
 		return i;
 	}
 
-	Hologram		holo1;
-	Hologram		holo2;
+	boolean			close		= false;
 
 	HologramManager	hologramManager;
 
-	PlayerManager	pm;
+	public boolean	willClose	= false;
 
 	public Main() {
 		super("Lobby", "Lobby", 100);
+	}
+
+	public void additems() {
+		ItemsManager.get().addItems(MainMenuItem.get(), 0);
+		ItemsManager.get().addItems(Boutique.get(), 4);
+		ItemsManager.get().addItems(SwitchHub.get(), 27);
+		ItemsManager.get().addItems(Stats.get(), 30);
+		ItemsManager.get().addItems(spawn.get(), 31);
+		ItemsManager.get().addItems(Preferences.get(), 32);
+		ItemsManager.get().addItems(Lang.get(), 35);
 	}
 
 	@Override
@@ -45,21 +73,33 @@ public class Main extends API {
 
 	}
 
-	public Hologram getHolo1() {
-		return this.holo1;
+	public HologramManager getHologramManager() {
+		return this.hologramManager;
 	}
 
-	public Hologram getHolo2() {
-		return this.holo2;
+	public boolean isClose() {
+		return this.close;
 	}
 
-	public PlayerManager getPlayerManager() {
-		return this.pm;
+	public boolean isWillClose() {
+		return this.willClose;
+	}
+
+	public void loadHolos() {
+		HologramsManager.get().addHologram("box1", new Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),
+				"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
+				"§eClique gauche §7pour regarder les §cGains");
+		HologramsManager.get().addHologram("box2", new Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522),
+				"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
+				"§eClique gauche §7pour regarder les §cGains");
 	}
 
 	@Override
 	public void onClose() {
+		this.willClose = true;
 		this.closeServer();
+		this.close = true;
+		Arrays.asList(GamesEnum.values()).forEach((a) -> a.getN().Dispawn());
 	}
 
 	@Override
@@ -71,7 +111,6 @@ public class Main extends API {
 	@Override
 	public void onOpen() {
 		i = this;
-		this.pm = new PlayerManager();
 		this.hologramManager = JavaPlugin.getPlugin(HologramPlugin.class).getHologramManager();
 
 		this.openServer();
@@ -79,26 +118,29 @@ public class Main extends API {
 
 		this.setScoreBoard(Scoreboard.class);
 
+		this.loadHolos();
+
 		this.setAnnounce();
 
-		this.w.setDifficulty(Difficulty.PEACEFUL);
+		this.additems();
+
+		this.w.setDifficulty(Difficulty.EASY);
 		this.w.getEntities().forEach(e -> {
-			if (e instanceof Monster && e.getLocation().getWorld().getName().equals("world"))
-				e.remove();
+			e.remove();
 		});
 
-		this.RegisterAllEvents(new PlayerConnectionListener(), new PlayerEvents(), new NaturalListener(),
-				new PlayerMountListener());
-
-		TaskManager.scheduleSyncRepeatingTask("inv", () -> {
-
-			PlayerConnectionListener.replace();
-
-		}, 0, 1);
+		this.RegisterAllEvents(new PlayerEvents(), new NaturalListener(), new PlayerChat(), new PlayerMountListener(),
+				new InteractOnNPC(), new InventoryListener(), new JoinAndLeave(), new MoveListener());
 
 		TaskManager.scheduleSyncRepeatingTask("box", () -> {
 
-			PlayerConnectionListener.box();
+			Bukkit.getOnlinePlayers().forEach(p -> {
+				p.getInventory().setItem(8, MagicboxItem.get().getStaticItem());
+				final AtomicInteger i = new AtomicInteger();
+				for (i.set(0); i.get() < 32; i.incrementAndGet())
+					if (ItemsManager.get().getItems().values().stream().filter(e -> i.get() != e).findFirst() == null)
+						p.getInventory().setItem(i.get(), new ItemStack(Material.AIR));
+			});
 
 		}, 0, 60);
 
@@ -109,9 +151,7 @@ public class Main extends API {
 		}, 0, 3 * 20);
 
 		MountManager.init();
-		GamesManager.getInstance().inits();
-
-		EpicChestItem.init();
+		MagicboxItem.init();
 
 		if (this.getServer().getPluginManager().getPlugin("Citizens") == null
 				|| !this.getServer().getPluginManager().getPlugin("Citizens").isEnabled()) {
@@ -124,20 +164,19 @@ public class Main extends API {
 
 		this.addHealthNameTag();
 
+		new Thread(new GamesThread()).start();
+
+		Arrays.asList(GamesEnum.values()).forEach((a) -> {
+			a.getN().Spawn();
+			a.getN().createHolo(a.getGm());
+		});
+
 	}
 
 	@Override
 	public void RegisterCommands() {
 		// TODO Auto-generated method stub
 
-	}
-
-	public void setHolo1(final Hologram holo1) {
-		this.holo1 = holo1;
-	}
-
-	public void setHolo2(final Hologram holo2) {
-		this.holo2 = holo2;
 	}
 
 }

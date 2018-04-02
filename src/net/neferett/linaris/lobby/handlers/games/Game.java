@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import net.neferett.linaris.BukkitAPI;
 import net.neferett.linaris.api.Games;
-import net.neferett.linaris.lobby.shop.ShopItem;
+import net.neferett.linaris.lobby.handlers.shop.ShopItem;
 
 public class Game {
 

@@ -7,8 +7,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import net.neferett.linaris.BukkitAPI;
 import net.neferett.linaris.inventory.InstantShopItem;
-import net.neferett.linaris.lobby.shop.ranks.BoosterItem;
+import net.neferett.linaris.lobby.handlers.shop.ranks.BoosterItem;
 import net.neferett.linaris.lobby.utils.ItemBuilder;
 import net.neferett.linaris.lobby.utils.NBTItem;
 import net.neferett.linaris.utils.gui.GuiManager;
@@ -57,7 +58,7 @@ public class RankAndBoosterInventory extends GuiScreen {
 			if (myitem == null)
 				return;
 			this.close();
-			myitem.useOrBuy(this.getPlayer(), this);
+			myitem.useOrBuy(BukkitAPI.get().getPlayerDataManager().getPlayerData(this.getPlayer().getName()), this);
 		}
 	}
 

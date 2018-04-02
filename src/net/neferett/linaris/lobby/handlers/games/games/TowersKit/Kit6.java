@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import net.neferett.linaris.lobby.shop.LevelInfo;
-import net.neferett.linaris.lobby.shop.ShopItem;
+import net.neferett.linaris.lobby.handlers.shop.LevelInfo;
+import net.neferett.linaris.lobby.handlers.shop.ShopItem;
 import net.neferett.linaris.lobby.utils.ItemBuilder;
 
 public class Kit6 extends ShopItem {

@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import net.neferett.linaris.utils.gui.GuiManager;
 import net.neferett.linaris.utils.gui.GuiScreen;
 import net.neferett.linaris.lobby.handlers.games.Game;
-import net.neferett.linaris.lobby.items.ProfileItem;
-import net.neferett.linaris.lobby.shop.ShopItem;
+import net.neferett.linaris.lobby.handlers.items.ProfileItem;
+import net.neferett.linaris.lobby.handlers.shop.ShopItem;
 import net.neferett.linaris.lobby.utils.ItemBuilder;
 
 public class GuiItemView extends GuiScreen {

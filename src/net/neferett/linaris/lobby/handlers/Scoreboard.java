@@ -14,10 +14,9 @@ import net.neferett.linaris.utils.ScoreboardSign;
 
 public class Scoreboard extends ScoreBoardModule {
 
-	public static HashMap<Player, Boolean>	jump	= new HashMap<>();
-	RainbowEffect							NAME;
+	RainbowEffect	NAME;
 
-	String									title;
+	String			title;
 
 	public Scoreboard(final BukkitAPI game) {
 		super(game);
@@ -48,46 +47,43 @@ public class Scoreboard extends ScoreBoardModule {
 
 	@Override
 	public void onUpdate(final Player p) {
-		if (jump.get(p) == false) {
 
-			ScoreboardSign bar = ScoreboardSign.get(p);
-			if (bar == null) {
-				bar = new ScoreboardSign(p, this.title);
-				bar.create();
-			}
-
-			final HashMap<Integer, String> lines = new HashMap<>();
-
-			final PlayerData data = BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
-
-			bar.setObjectiveName(this.title);
-			lines.put(13, "§8● §7§lGrade§f§l:");
-			lines.put(12,
-					"    §b➜" + (data.getRank().getColor() == '7' ? "§f§l" : "§" + data.getRank().getColor() + "§l")
-							+ " " + data.getRank().getName());
-			lines.put(11, "§d");
-			lines.put(10, "§8●§e§l Coins§f§l:");
-			lines.put(9, "    §b➜§f§l " + data.getEC());
-			lines.put(8, "§8●§a§l Crédits§f§l:");
-			lines.put(7, "    §b➜§f§l " + data.getLC());
-			lines.put(6, "§8● §c§lTokens§f§l:");
-			lines.put(5, "    §b➜§f§l " + data.getTokens());
-			lines.put(4, "§8● §6§lJoueurs§f§l:");
-			lines.put(3, "    §b➜§f§l " + this.getOnlinePlayers());
-			lines.put(2, "§f");
-			lines.put(1, "§e► play.linaris.fr §7§l| §a§l" + Bukkit.getServerName());
-
-			if (lines.isEmpty())
-				return;
-			for (int i = 1; i < 16; i++)
-				if (!lines.containsKey(i)) {
-					if (bar.getLine(i) != null)
-						bar.removeLine(i);
-				} else if (bar.getLine(i) == null)
-					bar.setLine(i, lines.get(i));
-				else if (!bar.getLine(i).equals(lines.get(i)))
-					bar.setLine(i, lines.get(i));
+		ScoreboardSign bar = ScoreboardSign.get(p);
+		if (bar == null) {
+			bar = new ScoreboardSign(p, this.title);
+			bar.create();
 		}
+
+		final HashMap<Integer, String> lines = new HashMap<>();
+
+		final PlayerData data = BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
+
+		bar.setObjectiveName(this.title);
+		lines.put(13, "§8● §7§lGrade§f§l:");
+		lines.put(12, "    §b➜" + (data.getRank().getColor() == '7' ? "§f§l" : "§" + data.getRank().getColor() + "§l")
+				+ " " + data.getRank().getName());
+		lines.put(11, "§d");
+		lines.put(10, "§8●§e§l Coins§f§l:");
+		lines.put(9, "    §b➜§f§l " + data.getEC());
+		lines.put(8, "§8●§a§l Crédits§f§l:");
+		lines.put(7, "    §b➜§f§l " + data.getLC());
+		lines.put(6, "§8● §c§lTokens§f§l:");
+		lines.put(5, "    §b➜§f§l " + data.getTokens());
+		lines.put(4, "§8● §6§lJoueurs§f§l:");
+		lines.put(3, "    §b➜§f§l " + this.getOnlinePlayers());
+		lines.put(2, "§f");
+		lines.put(1, "§e► play.linaris.fr §7§l| §a§l" + Bukkit.getServerName());
+
+		if (lines.isEmpty())
+			return;
+		for (int i = 1; i < 16; i++)
+			if (!lines.containsKey(i)) {
+				if (bar.getLine(i) != null)
+					bar.removeLine(i);
+			} else if (bar.getLine(i) == null)
+				bar.setLine(i, lines.get(i));
+			else if (!bar.getLine(i).equals(lines.get(i)))
+				bar.setLine(i, lines.get(i));
 
 	}
 
