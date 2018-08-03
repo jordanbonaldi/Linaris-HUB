@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import lombok.Getter;
 import net.neferett.linaris.BukkitAPI;
 import net.neferett.linaris.api.GameServer;
 import net.neferett.linaris.api.Games;
@@ -13,19 +14,26 @@ import net.neferett.linaris.utils.PlayerUtils;
 
 public class GamesManager {
 
-	private final CreatorManager	cm;
+	private CreatorManager			cm;
 	private final Games				g;
+	@Getter
+	private final boolean			logGame;
 	private GameServer				selected;
+
 	private LinkedList<GameServer>	servers;
 
-	public GamesManager(final Games g, final String mode, final boolean ml) {
+	public GamesManager(final Games g, final String mode, final boolean ml, final boolean needcreation) {
 		this.g = g;
-		this.cm = new CreatorManager(g.getGameName().contains("cod") ? "COD" : g.getDisplayName(), mode, ml);
+		this.cm = null;
+		this.logGame = needcreation;
+		if (needcreation)
+			this.cm = new CreatorManager(g.getGameName().contains("cod") ? "COD" : g.getDisplayName(), mode, ml);
 	}
 
 	public void createGame() {
 		System.out.println("CREATION LAUNCH REQUEST");
-		this.cm.build();
+		if (this.cm != null)
+			this.cm.build();
 	}
 
 	private void fillGames() {
@@ -55,9 +63,7 @@ public class GamesManager {
 	}
 
 	private boolean isValidGames(final GameServer g) {
-		return g == null ? false
-				: g.canJoin() && g.canSee() && g.getPlayers() > 0 && g.getPlayers() == g.getMaxPlayers() - 1 ? false
-						: g.getPlayers() < g.getMaxPlayers() && g.canJoin() && g.canSee();
+		return g == null ? false : g.canJoin() && g.canSee();
 
 	}
 
@@ -81,7 +87,7 @@ public class GamesManager {
 	}
 
 	public void TeleportToSelectedGame(final Player p) {
-		if (this.isSelectedAlwaysAvailable()) {
+		if (this.isSelectedAlwaysAvailable() || !this.logGame) {
 			p.sendMessage(Utils.colorize(new Object[] { "&a&oTransfert vers " + this.selected.getGameName() }));
 			PlayerUtils.goToServer(p, this.getSelected());
 		} else

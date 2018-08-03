@@ -1,5 +1,6 @@
 package net.neferett.linaris.lobby.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,7 +19,7 @@ public class PlayerChat implements Listener {
 		event.setCancelled(true);
 		final PlayerData pd = BukkitAPI.get().getPlayerDataManager().getPlayerData(player.getName());
 
-		player.sendMessage("§" + pd.getRank().getColor() + pd.getRank().getPrefix(pd) + player.getName() + "§"
+		Bukkit.broadcastMessage("§" + pd.getRank().getColor() + pd.getRank().getPrefix(pd) + player.getName() + "§"
 				+ pd.getRank().getColor() + " : " + event.getMessage().trim().replace("&", "§"));
 
 	}

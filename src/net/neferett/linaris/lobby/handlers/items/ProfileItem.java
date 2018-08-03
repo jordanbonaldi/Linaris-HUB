@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import net.neferett.linaris.BukkitAPI;
 import net.neferett.linaris.api.PlayerData;
 import net.neferett.linaris.api.ranks.RankAPI;
+import net.neferett.linaris.lobby.minigames.GamesEnum;
 import net.neferett.linaris.specialitems.MenuItem;
 import net.neferett.linaris.specialitems.SpecialItem;
 import net.neferett.linaris.utils.ItemStackUtils;
@@ -25,19 +26,15 @@ public class ProfileItem extends MenuItem {
 		final PlayerData pd = BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
 		final RankAPI rank = pd.getRank();
 
+		lore.add("§f");
 		if (pd.contains("rankFinish"))
 			lore.add("§7Grade: §" + rank.getColor() + rank.getName() + " " + TimeUtils.minutesToDayHoursMinutes(
 					(int) (Math.abs(pd.getRankFinish() - System.currentTimeMillis()) / 1000 / 60)));
 		else
 			lore.add("§7Grade: §" + rank.getColor() + rank.getName());
-		lore.add("§7Coins: §e" + String.format("%.2f", pd.getEC()));
-		lore.add("§7Crédits: §b" + String.format("%.2f", pd.getLC()));
-		if (pd.contains("booster"))
-			lore.add("§7Booster: " + TimeUtils.minutesToDayHoursMinutes(
-					(int) (Math.abs(pd.getBoosterFinish() - System.currentTimeMillis()) / 1000 / 60)));
-		else
-			lore.add("§7Booster: §cDésactivé");
-		lore.add("§7Gains de Coins: §e" + (100 + rank.getMultiplier() * 100) + "%");
+		lore.add("§f");
+		lore.add("§7Jeu préféré: §e" + GamesEnum.getMostPlayedGame(pd));
+		lore.add("§f");
 
 		return lore.toArray(new String[lore.size()]);
 	}

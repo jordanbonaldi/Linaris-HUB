@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 
 public class NaturalListener implements Listener {
@@ -51,6 +52,11 @@ public class NaturalListener implements Listener {
 	@EventHandler
 	public void onStructureGrowEvent(final StructureGrowEvent event) {
 		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onWeatherChange(final WeatherChangeEvent e) {
+		e.setCancelled(true);
 	}
 
 }

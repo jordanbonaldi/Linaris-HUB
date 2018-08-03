@@ -31,13 +31,15 @@ public class MiniGamesItems extends Items {
 
 		this.ib.addLores("§7Serveur§f: §e" + g.getServName());
 		this.ib.addLores("§7Status§f: §a" + this.VIPText(g));
-		this.ib.addLores("§7Joueur" + (g.getPlayers() > 1 ? "s" : "") + "§f: §a" + g.getPlayers() + "§f/§a"
-				+ (g.getMaxPlayers() - 1));
+		if (this.gm.isLogGame())
+			this.ib.addLores("§7Joueur" + (g.getPlayers() > 1 ? "s" : "") + "§f: §a" + g.getPlayers() + "§f/§a"
+					+ (g.getMaxPlayers() - 1));
 	}
 
 	private String VIPText(final GameServer g) {
 		return g.getMaxPlayers() == g.getPlayers() - 1 ? "§cFULL"
-				: g.getPlayers() > 9 && g.getPlayers() >= g.getMaxPlayers() - 3 ? "§d✪ VIP ✪" : "§aAttente...";
+				: g.getPlayers() > 9 && g.getPlayers() >= g.getMaxPlayers() - 3 ? "§d✪ VIP ✪"
+						: this.gm.isLogGame() ? "§aAttente..." : "§aOuvert à tous";
 	}
 
 }

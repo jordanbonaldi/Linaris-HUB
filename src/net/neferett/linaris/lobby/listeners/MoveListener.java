@@ -36,7 +36,7 @@ public class MoveListener implements Listener {
 			return;
 		}
 
-		if (p.getLocation().getY() < 50)
+		if (p.getLocation().getY() < 0)
 			p.teleport(ConfigDatas.getInstance().getSpawn());
 
 		if (e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SEA_LANTERN

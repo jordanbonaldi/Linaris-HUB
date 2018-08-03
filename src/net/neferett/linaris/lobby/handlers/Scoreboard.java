@@ -2,12 +2,12 @@ package net.neferett.linaris.lobby.handlers;
 
 import java.util.HashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import net.neferett.linaris.BukkitAPI;
 import net.neferett.linaris.api.GameServer;
 import net.neferett.linaris.api.PlayerData;
+import net.neferett.linaris.lobby.minigames.GamesEnum;
 import net.neferett.linaris.utils.RainbowEffect;
 import net.neferett.linaris.utils.ScoreBoardModule;
 import net.neferett.linaris.utils.ScoreboardSign;
@@ -21,7 +21,7 @@ public class Scoreboard extends ScoreBoardModule {
 	public Scoreboard(final BukkitAPI game) {
 		super(game);
 
-		this.NAME = new RainbowEffect("LINARIS", "§f§l", "§6§l", 40);
+		this.NAME = new RainbowEffect("UniverSeven", "§f§l", "§6§l", 40);
 
 	}
 
@@ -59,20 +59,19 @@ public class Scoreboard extends ScoreBoardModule {
 		final PlayerData data = BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
 
 		bar.setObjectiveName(this.title);
-		lines.put(13, "§8● §7§lGrade§f§l:");
-		lines.put(12, "    §b➜" + (data.getRank().getColor() == '7' ? "§f§l" : "§" + data.getRank().getColor() + "§l")
-				+ " " + data.getRank().getName());
-		lines.put(11, "§d");
-		lines.put(10, "§8●§e§l Coins§f§l:");
-		lines.put(9, "    §b➜§f§l " + data.getEC());
-		lines.put(8, "§8●§a§l Crédits§f§l:");
-		lines.put(7, "    §b➜§f§l " + data.getLC());
-		lines.put(6, "§8● §c§lTokens§f§l:");
-		lines.put(5, "    §b➜§f§l " + data.getTokens());
-		lines.put(4, "§8● §6§lJoueurs§f§l:");
-		lines.put(3, "    §b➜§f§l " + this.getOnlinePlayers());
-		lines.put(2, "§f");
-		lines.put(1, "§e► play.linaris.fr §7§l| §a§l" + Bukkit.getServerName());
+		lines.put(12, "§f");
+		lines.put(11, "§fGrade:" + (data.getRank().getColor() == '7' ? "§f"
+				: "§" + data.getRank().getColor() + " " + data.getRank().getName()));
+		lines.put(10, "§2");
+		lines.put(9, "§fJeu préféré§f: §e" + GamesEnum.getMostPlayedGame(data));
+		lines.put(8, "§1");
+		lines.put(7, "Senzus: §e" + data.getTokens());
+		lines.put(6, "§9");
+		lines.put(5, "§fHub§f: §e#" + BukkitAPI.get().getServerInfos().getServerName().charAt(3));
+		lines.put(4, "§e");
+		lines.put(3, "§fJoueurs§f: §a" + this.getOnlinePlayers());
+		lines.put(2, "§a");
+		lines.put(1, "§e► play.universeven.fr");
 
 		if (lines.isEmpty())
 			return;

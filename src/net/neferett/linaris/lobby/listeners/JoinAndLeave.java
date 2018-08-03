@@ -33,11 +33,14 @@ public class JoinAndLeave implements Listener {
 	public void PlayerJoin(final PlayerJoinEvent e) {
 
 		final Players p = PlayerManager.get().getPlayer(e.getPlayer());
+		BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
 
 		p.teleport(ConfigDatas.getInstance().getSpawn());
 
-		p.setAllowFlight(true);
-		p.setFlying(true);
+		if (p.getPlayerData().getRank().getVipLevel() >= 4) {
+			p.setAllowFlight(true);
+			p.setFlying(true);
+		}
 		p.setWalkSpeed(0.3F);
 		p.getInventory().clear();
 
@@ -102,7 +105,7 @@ public class JoinAndLeave implements Listener {
 	public void setInventory(final Players p) {
 		ItemsManager.get().ActionOnEachItems((item, slot) -> p.getInventory().setItem(slot, item.getStaticItem()));
 		p.getInventory().setItem(8, MagicboxItem.get().getStaticItem());
-		p.getInventory().setItem(22, ProfileItem.getInstance(p.getPlayer()).getStaticItem());
+		p.getInventory().setItem(6, ProfileItem.getInstance(p.getPlayer()).getStaticItem());
 	}
 
 }

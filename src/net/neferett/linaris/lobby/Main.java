@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,15 +13,12 @@ import com.sainttx.holograms.api.HologramManager;
 import com.sainttx.holograms.api.HologramPlugin;
 
 import net.neferett.linaris.api.API;
-import net.neferett.linaris.lobby.handlers.HologramsManager;
 import net.neferett.linaris.lobby.handlers.Scoreboard;
 import net.neferett.linaris.lobby.handlers.games.GamesManager;
 import net.neferett.linaris.lobby.handlers.items.ItemsManager;
 import net.neferett.linaris.lobby.handlers.items.magicbox.MagicboxItem;
 import net.neferett.linaris.lobby.handlers.items.mainmenu.Boutique;
-import net.neferett.linaris.lobby.handlers.items.mainmenu.Lang;
 import net.neferett.linaris.lobby.handlers.items.mainmenu.MainMenuItem;
-import net.neferett.linaris.lobby.handlers.items.mainmenu.Preferences;
 import net.neferett.linaris.lobby.handlers.items.mainmenu.Stats;
 import net.neferett.linaris.lobby.handlers.items.mainmenu.SwitchHub;
 import net.neferett.linaris.lobby.handlers.items.mainmenu.spawn;
@@ -58,13 +54,11 @@ public class Main extends API {
 	}
 
 	public void additems() {
-		ItemsManager.get().addItems(MainMenuItem.get(), 0);
-		ItemsManager.get().addItems(Boutique.get(), 4);
+		ItemsManager.get().addItems(Boutique.get(), 0);
+		ItemsManager.get().addItems(Stats.get(), 2);
+		ItemsManager.get().addItems(MainMenuItem.get(), 4);
 		ItemsManager.get().addItems(SwitchHub.get(), 27);
-		ItemsManager.get().addItems(Stats.get(), 30);
-		ItemsManager.get().addItems(spawn.get(), 31);
-		ItemsManager.get().addItems(Preferences.get(), 32);
-		ItemsManager.get().addItems(Lang.get(), 35);
+		ItemsManager.get().addItems(spawn.get(), 35);
 	}
 
 	@Override
@@ -85,14 +79,16 @@ public class Main extends API {
 		return this.willClose;
 	}
 
-	public void loadHolos() {
-		HologramsManager.get().addHologram("box1", new Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),
-				"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
-				"§eClique gauche §7pour regarder les §cGains");
-		HologramsManager.get().addHologram("box2", new Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522),
-				"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
-				"§eClique gauche §7pour regarder les §cGains");
-	}
+	// public void loadHolos() {
+	// HologramsManager.get().addHologram("box1", new
+	// Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),
+	// "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
+	// "§eClique gauche §7pour regarder les §cGains");
+	// HologramsManager.get().addHologram("box2", new
+	// Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522),
+	// "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
+	// "§eClique gauche §7pour regarder les §cGains");
+	// }
 
 	@Override
 	public void onClose() {
@@ -113,18 +109,13 @@ public class Main extends API {
 		i = this;
 		this.hologramManager = JavaPlugin.getPlugin(HologramPlugin.class).getHologramManager();
 
-		// this.openServer();
+		this.openServer();
 
-		/* DEV MODE */
-		this.getInfo().setCanJoin(false, false);
-		this.getInfo().setCanSee(false, false);
 		this.handleWorld();
 
 		this.setScoreBoard(Scoreboard.class);
 
-		this.loadHolos();
-
-		this.setAnnounce();
+		// this.loadHolos();
 
 		this.additems();
 
@@ -166,9 +157,11 @@ public class Main extends API {
 
 		this.setAPIMode(true);
 
-		this.addHealthNameTag();
+		this.setAnnounce();
 
 		new Thread(new GamesThread()).start();
+
+		this.addHealthNameTag();
 
 		Arrays.asList(GamesEnum.values()).forEach((a) -> {
 			a.getN().Spawn();

@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.neferett.linaris.api.Games;
-import net.neferett.linaris.lobby.handlers.games.games.BuildBattle;
 import net.neferett.linaris.lobby.handlers.games.games.Rushs;
 import net.neferett.linaris.lobby.handlers.games.games.SkyWars;
-import net.neferett.linaris.lobby.handlers.games.games.Towers;
-import net.neferett.linaris.lobby.handlers.games.games.UhcRun;
 
 public class GamesManager {
 
@@ -61,20 +58,11 @@ public class GamesManager {
 
 	public void inits() {
 
-		UHCRUN = new UhcRun();
-		this.registerGame(UHCRUN);
-
 		SKYWARS = new SkyWars();
 		this.registerGame(SKYWARS);
 
 		RUSH = new Rushs();
 		this.registerGame(RUSH);
-
-		TOWERS = new Towers();
-		this.registerGame(TOWERS);
-
-		BUILDBATTLE = new BuildBattle();
-		this.registerGame(BUILDBATTLE);
 
 	}
 

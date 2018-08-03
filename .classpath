@@ -6,9 +6,9 @@
 	<classpathentry kind="lib" path="C:/Users/Neferett/LB/ProtocolLib.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neferett/LB/spigot.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neferett/LB/gson-2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Neferett/LB/HolographicDisplays.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neferett/LB/Holograms-2.4.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neferett/LB/citizens-2.0.13-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Neferett/Documents/GitHub/API/target/linaris-gameserver.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Neferett/LB/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

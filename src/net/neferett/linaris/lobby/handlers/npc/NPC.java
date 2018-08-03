@@ -27,6 +27,7 @@ public class NPC {
 	};
 
 	static int						j	= 0;
+	boolean							creation;
 	Hologram						hg;
 	String							name;
 	net.citizensnpcs.api.npc.NPC	npc;
@@ -34,6 +35,7 @@ public class NPC {
 	EntityType						type;
 	World							w;
 	String							world;
+
 	double							x;
 
 	double							y;
@@ -41,10 +43,11 @@ public class NPC {
 	double							z;
 
 	public NPC(final String name, final EntityType type, final String world, final double x, final double y,
-			final double z) {
+			final double z, final boolean creation) {
 		this.name = name;
 		this.type = type;
 		this.world = world;
+		this.creation = creation;
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -68,14 +71,18 @@ public class NPC {
 		this.hg.despawn();
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 	public net.citizensnpcs.api.npc.NPC getNpc() {
 		return this.npc;
 	}
 
 	private String ServerText(final GamesManager gm) {
-		return gm.isSelectedAlwaysAvailable() && gm.getSelected() != null
+		return gm.isSelectedAlwaysAvailable() && gm.getSelected() != null || gm.isLogGame() ? this.creation
 				? "§a" + gm.getSelected().getPlayers() + "§r/§a" + (gm.getSelected().getMaxPlayers() - 1)
-				: "§cCréation d'un serveur en cours...";
+				: "§e" + gm.getSelected().getPlayers() + " §7Joueurs" : "§cCréation d'un serveur en cours...";
 	}
 
 	private void setParameters() {
@@ -112,7 +119,7 @@ public class NPC {
 				? gm.getSelected().getMaxPlayers() == gm.getSelected().getPlayers() - 1 ? "§cFULL"
 						: gm.getSelected().getPlayers() > 9
 								&& gm.getSelected().getPlayers() >= gm.getSelected().getMaxPlayers() - 3 ? "§d✪ VIP ✪"
-										: "§aAttente..."
+										: this.creation ? "§aAttente..." : ""
 				: "";
 	}
 
