@@ -1,8 +1,0 @@
-eclipse.preferences.version=1
-encoding//src/net/neferett/linaris/lobby/handlers/Scoreboard.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/inventories/ChangeHubInventory.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/inventories/MainMenuInventory.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/inventories/Ranks.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/items/games/MiniGamesItems.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/npc/NPC.java=UTF-8
-encoding//src/net/neferett/linaris/lobby/handlers/shop/guis/BuyKitGui.java=UTF-8

@@ -1,0 +1,8 @@
+name: Lobby
+version: 1.0
+main: net.neferett.linaris.Main
+depend: [BukkitAPI, Holograms, Citizens]
+commands:
+  game:
+  jump:
+  bungeenpc:
