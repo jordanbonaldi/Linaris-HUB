@@ -24,13 +24,13 @@ public class Stats extends MenuItem {
 	}
 
 	public Stats() {
-		super("§6Stats et Succ§s", GlowUtils.addGlow(new ItemStack(Material.BOOK_AND_QUILL)), "§7Vos stats et succ§s");
+		super("§6Stats et Succ§s", GlowUtils.addGlow(new ItemStack(Material.BOOK_AND_QUILL)), "§7Vos stats et succés");
 	}
 
 	@Override
 	public void inventoryClickEvent(final Player player) {
 		if (GamesEnum.getGamesPlayed(BukkitAPI.get().getPlayerDataManager().getPlayerData(player.getName())) == null) {
-			player.sendMessage("§cVous n'avez jou§ § aucun jeu rassemblant des statistiques pour le moment");
+			player.sendMessage("§cVous n'avez joué à aucun jeu rassemblant des statistiques pour le moment");
 			return;
 		}
 		GuiManager.openGui(new StatsInventory(player, new MainMenuInventory(player)));

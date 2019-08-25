@@ -19,7 +19,7 @@ public class MainMenuItem extends MenuItem {
 	}
 	
 	public MainMenuItem() {
-		super("§6Menu Principal & Jeux", new ItemStack(Material.COMPASS),"§7Acc§der au menu principal","§7et aux jeux");
+		super("§6Menu Principal & Jeux", new ItemStack(Material.COMPASS),"§7Accéder au menu principal","§7et aux jeux");
 	}
 
 	@Override

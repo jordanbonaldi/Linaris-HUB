@@ -53,7 +53,7 @@ public class NPC {
 		this.z = z;
 		this.w = ((CraftWorld) Bukkit.getServer().getWorld(this.world)).getHandle();
 		this.npcr = CitizensAPI.getNPCRegistry();
-		this.npc = this.npcr.createNPC(this.type, "net.neferett.linarisf");
+		this.npc = this.npcr.createNPC(this.type, "§f");
 	}
 
 	public void createHolo(final GamesManager gm) {
@@ -81,8 +81,8 @@ public class NPC {
 
 	private String ServerText(final GamesManager gm) {
 		return gm.isSelectedAlwaysAvailable() && gm.getSelected() != null || gm.isLogGame() ? this.creation
-				? "net.neferett.linarisa" + gm.getSelected().getPlayers() + "net.neferett.linarisr/net.neferett.linarisa" + (gm.getSelected().getMaxPlayers() - 1)
-				: "net.neferett.linarise" + gm.getSelected().getPlayers() + " net.neferett.linaris7Joueurs" : "net.neferett.linariscCréation d'un serveur en cours...";
+				? "§a" + gm.getSelected().getPlayers() + "§r/§a" + (gm.getSelected().getMaxPlayers() - 1)
+				: "§e" + gm.getSelected().getPlayers() + " §7Joueurs" : "§cCréation d'un serveur en cours...";
 	}
 
 	private void setParameters() {
@@ -116,10 +116,10 @@ public class NPC {
 
 	private String VIPText(final GamesManager gm) {
 		return gm.isSelectedAlwaysAvailable() && gm.getSelected() != null
-				? gm.getSelected().getMaxPlayers() == gm.getSelected().getPlayers() - 1 ? "net.neferett.linariscFULL"
+				? gm.getSelected().getMaxPlayers() == gm.getSelected().getPlayers() - 1 ? "§cFULL"
 						: gm.getSelected().getPlayers() > 9
-								&& gm.getSelected().getPlayers() >= gm.getSelected().getMaxPlayers() - 3 ? "net.neferett.linarisd✪ VIP ✪"
-										: this.creation ? "net.neferett.linarisaAttente..." : ""
+								&& gm.getSelected().getPlayers() >= gm.getSelected().getMaxPlayers() - 3 ? "§d✪ VIP ✪"
+										: this.creation ? "§aAttente..." : ""
 				: "";
 	}
 

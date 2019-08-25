@@ -28,16 +28,16 @@ public enum GamesEnum {
 	// 6),
 	FACTION(
 			new GamesManager(Games.FacMagie, null, false, false),
-			new NPC("Faction", EntityType.VILLAGER, "world", 52.5, 40, -39.5, false),
+			new NPC("Faction", EntityType.VILLAGER, "world", 6.5, 103, 14.5, false),
 			Material.GOLDEN_APPLE,
 			3,
 			2),
-	PRISON(
-			new GamesManager(Games.Prison, null, false, false),
-			new NPC("Prison", EntityType.VILLAGER, "world", 49.5, 40, -40.5, false),
-			Material.IRON_FENCE,
-			5,
-			2),
+//	PRISON(
+//			new GamesManager(Games.Prison, null, false, false),
+//			new NPC("Prison", EntityType.VILLAGER, "world", 49.5, 40, -40.5, false),
+//			Material.IRON_FENCE,
+//			5,
+//			2),
 	// Hika(
 	// new GamesManager(Games.HikaBrain, null, false),
 	// new NPC("HikaBrain", EntityType.VILLAGER, "world", -5.487, 103, 14.4),
@@ -50,13 +50,13 @@ public enum GamesEnum {
 	// 6),
 	SKYBLOCK(
 			new GamesManager(Games.SKYBLOCK, null, false, false),
-			new NPC("SkyBlock", EntityType.VILLAGER, "world", 58.5, 40, -31.5, false),
+			new NPC("SkyBlock", EntityType.VILLAGER, "world", -5.5, 103, 14.5, false),
 			Material.GRASS,
 			5,
 			4),
 	SKYPVP(
 			new GamesManager(Games.SkyPvP, null, false, false),
-			new NPC("SkyPvP", EntityType.VILLAGER, "world", 55.50, 40, -36.5, false),
+			new NPC("SkyPvP", EntityType.VILLAGER, "world", 0.50, 102, 20.5, false),
 			Material.IRON_SWORD,
 			7,
 			2);

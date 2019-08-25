@@ -19,7 +19,7 @@ public class RankItem extends MenuItem {
 	}
 	
 	public RankItem() {
-		super("§6Informations Grades", new ItemStack(Material.SIGN),"§7Acc§der aux informations","§7des differents gardes du serveur");
+		super("§6Informations Grades", new ItemStack(Material.SIGN),"§7Accéder aux informations","§7des differents gardes du serveur");
 	}
 
 	@Override

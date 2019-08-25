@@ -33,7 +33,7 @@ public class ProfileItem extends MenuItem {
 		else
 			lore.add("§7Grade: §" + rank.getColor() + rank.getName());
 		lore.add("§f");
-		lore.add("§7Jeu pr§f§r§: §e" + GamesEnum.getMostPlayedGame(pd));
+		lore.add("§7Jeu favoris§f§r§: §e" + GamesEnum.getMostPlayedGame(pd));
 		lore.add("§f");
 
 		return lore.toArray(new String[lore.size()]);

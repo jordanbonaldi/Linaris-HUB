@@ -20,7 +20,7 @@ public class Preferences extends MenuItem {
 	}
 	
 	public Preferences() {
-		super("§6Pr§f§rences", new ItemStack(Material.PAPER),"§7Activer/d§sactiver les", "§7m§ssageries et invitations",
+		super("§6Préférences", new ItemStack(Material.PAPER),"§7Activer/déssactiver les", "§7méssageries et invitations",
 				"§7ainsi que les options de groupe");
 	}
 
