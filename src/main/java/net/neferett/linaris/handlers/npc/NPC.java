@@ -60,8 +60,8 @@ public class NPC {
 
 		this.hg.addLine(new TextLine(this.hg, "&e" + this.name + " &f- (&6Clic-Droit&f)"));
 
-		this.hg.addLine(new NPCHologram(this.hg, gm1 -> NPC.this.VIPText(gm1), gm));
-		this.hg.addLine(new NPCHologram(this.hg, gm1 -> NPC.this.ServerText(gm1), gm));
+		this.hg.addLine(new NPCHologram(this.hg, NPC.this::VIPText, gm));
+		this.hg.addLine(new NPCHologram(this.hg, NPC.this::ServerText, gm));
 
 	}
 

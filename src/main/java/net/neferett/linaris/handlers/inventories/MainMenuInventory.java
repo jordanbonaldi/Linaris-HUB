@@ -41,14 +41,12 @@ public class MainMenuInventory extends GuiScreen {
 		final ItemBuilder glass = new ItemBuilder(Material.STAINED_GLASS_PANE);
 		glass.setTitle("");
 		glass.setDamage((short) 1);
-		for (int i = 1; i < 5 * 9; i++)
+		for (int i = 0; i < 5 * 9; i++)
 			this.setItem(glass.build(), i);
 
 		final AtomicInteger i = new AtomicInteger(500);
 
-		this.g.forEach((e) -> {
-			this.setMiniGameItemLine(i.incrementAndGet(), e.getGm(), e.getM(), false, e.getLine(), e.getSlot(), "");
-		});
+		this.g.forEach((e) -> this.setMiniGameItemLine(i.incrementAndGet(), e.getGm(), e.getM(), false, e.getLine(), e.getSlot(), ""));
 
 	}
 

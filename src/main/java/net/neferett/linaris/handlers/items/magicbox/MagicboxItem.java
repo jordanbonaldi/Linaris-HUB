@@ -40,7 +40,7 @@ public class MagicboxItem extends MenuItem {
 		return (box.get(MainMenuInventory.getRandomInteger(rf.getjs().size(), 0)));
 	}
 	public MagicboxItem() {
-		super("§6Boite magique", getRandomChest().getItem(),"§7Pleins d'objets a d§couvrir !");
+		super("§6Boite magique", getRandomChest().getItem(),"§7Pleins d'objets a découvrir !");
 	}
 
 	@Override

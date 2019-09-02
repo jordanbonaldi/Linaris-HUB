@@ -29,20 +29,18 @@ public class InteractOnNPC implements Listener {
 
 	public void onNPCClick(final NPCClickEvent event) {
 		final Player p = event.getClicker();
-		for (final GamesEnum g : Arrays.asList(GamesEnum.values()))
+		for (final GamesEnum g : GamesEnum.values())
 			if (g.getN().getNpc().equals(event.getNPC())) {
 				final PlayerData pd = BukkitAPI.get().getPlayerDataManager().getPlayerData(p.getName());
-				if (g.getGm().getSelected() != null
-						&& g.getGm().getSelected().getMaxPlayers() == g.getGm().getSelected().getMaxPlayers() - 1) {
-					p.sendMessage("§cLe serveur est complet !");
-					return;
-				}
+				if (g.getGm().getSelected() != null)
+					g.getGm().getSelected().getMaxPlayers();
+
 				if (g.getGm().getSelected() != null && g.getGm().getSelected().getMaxPlayers() > 9
 						&& g.getGm().getSelected().getPlayers() >= g.getGm().getSelected().getMaxPlayers() - 3) {
 					if (pd.getRank().getVipLevel() > 1)
 						g.getGm().TeleportToSelectedGame(p);
 					else
-						p.sendMessage("§cLes places restantes sont reserv§s aux §dVIPs");
+						p.sendMessage("§cLes places restantes sont reservés aux §dgradés");
 					return;
 				}
 				g.getGm().TeleportToSelectedGame(p);

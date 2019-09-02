@@ -46,7 +46,7 @@ public class JoinAndLeave implements Listener {
 
 		this.setInventory(p);
 
-		TitleUtils.sendTitle(p.getPlayer(), "§cLinaris...", "§aFun, PvP, §motions et plein de §cTNT §a!");
+		TitleUtils.sendTitle(p.getPlayer(), "§c???...", "§aFun, PvP, §motions et plein de §cTNT §a!");
 
 		this.setArmors(p.getPlayer());
 
@@ -92,10 +92,10 @@ public class JoinAndLeave implements Listener {
 				final MysteryItem mitem = MysteryItemsManager.getInstance().getMysteryItem(metaID);
 				if (mitem != null) {
 					mitem.onUse(player, false);
-					player.sendMessage("§f[§9Boutique§f] §7§oM§tamorphose active: §b" + mitem.getName());
+					player.sendMessage("§f[§9Boutique§f] §7§oMétamorphose active: §b" + mitem.getName());
 					if (!SettingsManager.isEnabled(player.getName(), Games.LOBBY, "metamorphose-viewself", true))
 						player.sendMessage(
-								"§7§oLa m§tamorphose est visible que par les autres joueurs, pour la voir vous aussi, activez l'oeil de l'ender dans le menu");
+								"§7§oLa métamorphose est visible que par les autres joueurs, pour la voir vous aussi, activez l'oeil de l'ender dans le menu");
 				}
 			}
 

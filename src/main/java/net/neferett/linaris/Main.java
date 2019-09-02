@@ -3,6 +3,7 @@ package net.neferett.linaris;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import net.neferett.linaris.handlers.HologramsManager;
 import net.neferett.linaris.handlers.Scoreboard;
 import net.neferett.linaris.handlers.games.GamesManager;
 import net.neferett.linaris.handlers.items.ItemsManager;
@@ -11,7 +12,9 @@ import net.neferett.linaris.minigames.GamesEnum;
 import net.neferett.linaris.minigames.GamesThread;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -54,7 +57,6 @@ public class Main extends API {
 	}
 
 	public void additems() {
-		ItemsManager.get().addItems(Boutique.get(), 0);
 		ItemsManager.get().addItems(Stats.get(), 2);
 		ItemsManager.get().addItems(MainMenuItem.get(), 4);
 		ItemsManager.get().addItems(SwitchHub.get(), 27);
@@ -79,16 +81,11 @@ public class Main extends API {
 		return this.willClose;
 	}
 
-	// public void loadHolos() {
-	// HologramsManager.get().addHologram("box1", new
-	// Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),
-	// "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
-	// "§eClique gauche §7pour regarder les §cGains");
-	// HologramsManager.get().addHologram("box2", new
-	// Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522),
-	// "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir",
-	// "§eClique gauche §7pour regarder les §cGains");
-	// }
+	 public void loadHolos() {
+		 HologramsManager.get().addHologram("box1", new
+						 Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+		 HologramsManager.get().addHologram("box2", new Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522), "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+	 }
 
 	@Override
 	public void onClose() {
@@ -115,14 +112,12 @@ public class Main extends API {
 
 		this.setScoreBoard(Scoreboard.class);
 
-		// this.loadHolos();
+		this.loadHolos();
 
 		this.additems();
 
 		this.w.setDifficulty(Difficulty.EASY);
-		this.w.getEntities().forEach(e -> {
-			e.remove();
-		});
+		this.w.getEntities().forEach(Entity::remove);
 
 		this.RegisterAllEvents(new PlayerEvents(), new NaturalListener(), new PlayerChat(), new PlayerMountListener(),
 				new InteractOnNPC(), new InventoryListener(), new JoinAndLeave(), new MoveListener());
@@ -132,9 +127,9 @@ public class Main extends API {
 			Bukkit.getOnlinePlayers().forEach(p -> {
 				p.getInventory().setItem(8, MagicboxItem.get().getStaticItem());
 				final AtomicInteger i = new AtomicInteger();
-				for (i.set(0); i.get() < 32; i.incrementAndGet())
-					if (ItemsManager.get().getItems().values().stream().filter(e -> i.get() != e).findFirst() == null)
-						p.getInventory().setItem(i.get(), new ItemStack(Material.AIR));
+				for (i.set(0); i.get() < 32; i.incrementAndGet()) {
+					ItemsManager.get().getItems().values().stream().filter(e -> i.get() != e).findFirst();
+				}
 			});
 
 		}, 0, 60);

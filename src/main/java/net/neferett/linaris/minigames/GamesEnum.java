@@ -56,23 +56,23 @@ public enum GamesEnum {
 			4),
 	SKYPVP(
 			new GamesManager(Games.SkyPvP, null, false, false),
-			new NPC("SkyPvP", EntityType.VILLAGER, "world", 0.50, 102, 20.5, false),
+			new NPC("SkyPvP", EntityType.VILLAGER, "world", 10.5, 103, 26.5, false),
 			Material.IRON_SWORD,
 			7,
-			2);
+			2),
 	// SW(
 	// new GamesManager(Games.SKYWARS, null, false, true),
 	// new NPC("SkyWars", EntityType.SKELETON, "world", 45.5, 40, -14, true),
 	// Material.DIAMOND_PICKAXE,
 	// 7,
 	// 6),
-	// TRAINING(
-	// new GamesManager(Games.PvPTraining, null, false, false),
-	// new NPC("PvPTraining", EntityType.VILLAGER, "world", 52.5, 40, -39.5,
-	// false),
-	// Material.WOOD_SWORD,
-	// 7,
-	// 2);
+	 TRAINING(
+	 new GamesManager(Games.PvPTraining, null, false, false),
+	 new NPC("PvPTraining", EntityType.VILLAGER, "world", -9.5, 103, 26.5,
+	 false),
+	 Material.WOOD_SWORD,
+	 5,
+	 2);
 	// Tower(
 	// new GamesManager(Games.TOWERS, "2vs2", false),
 	// new NPC("Towers", EntityType.SKELETON, "world", 16.501, 103, 21.573),
