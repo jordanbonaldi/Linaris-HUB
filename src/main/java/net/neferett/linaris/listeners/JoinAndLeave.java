@@ -1,5 +1,8 @@
 package net.neferett.linaris.listeners;
 
+import net.neferett.linaris.handlers.games.GamesManager;
+import net.neferett.linaris.minigames.GamesEnum;
+import net.neferett.linaris.utils.tasksmanager.TaskManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +22,8 @@ import net.neferett.linaris.utils.ConfigDatas;
 import net.neferett.linaris.mistery.MysteryItem;
 import net.neferett.linaris.mistery.MysteryItemsManager;
 import net.neferett.linaris.utils.TitleUtils;
+
+import java.util.Arrays;
 
 public class JoinAndLeave implements Listener {
 
@@ -46,12 +51,18 @@ public class JoinAndLeave implements Listener {
 
 		this.setInventory(p);
 
-		TitleUtils.sendTitle(p.getPlayer(), "§c???...", "§aFun, PvP, §motions et plein de §cTNT §a!");
+		TitleUtils.sendTitle(p.getPlayer(), "§c???...", "§aPvPTraining, PvPFaction, SkyBlock, SkyPvP");
 
 		this.setArmors(p.getPlayer());
 
-		if (!loaded && (loaded = true))
+		if (!loaded && (loaded = true)) {
 			HologramsManager.get().build();
+		}
+
+		Arrays.asList(GamesEnum.values()).forEach((a) -> {
+			a.getN().getHg().despawn();
+			a.getN().createHolo(a.getGm());
+		});
 
 	}
 

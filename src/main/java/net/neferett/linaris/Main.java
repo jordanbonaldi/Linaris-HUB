@@ -160,7 +160,6 @@ public class Main extends API {
 
 		Arrays.asList(GamesEnum.values()).forEach((a) -> {
 			a.getN().Spawn();
-			a.getN().createHolo(a.getGm());
 		});
 
 	}

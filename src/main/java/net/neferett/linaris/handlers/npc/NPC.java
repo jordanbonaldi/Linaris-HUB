@@ -1,16 +1,8 @@
 package net.neferett.linaris.handlers.npc;
 
-import net.neferett.linaris.minigames.GamesManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Skeleton.SkeletonType;
-import org.bukkit.entity.Villager.Profession;
-
 import com.sainttx.holograms.api.Hologram;
 import com.sainttx.holograms.api.line.TextLine;
-
+import lombok.Getter;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPCRegistry;
 import net.citizensnpcs.trait.LookClose;
@@ -19,15 +11,23 @@ import net.citizensnpcs.trait.Powered;
 import net.citizensnpcs.trait.VillagerProfession;
 import net.minecraft.server.v1_8_R3.World;
 import net.neferett.linaris.Main;
+import net.neferett.linaris.minigames.GamesManager;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Skeleton.SkeletonType;
+import org.bukkit.entity.Villager.Profession;
 
 public class NPC {
 
 	public interface getText {
-		public String getMsg(GamesManager gm);
+		String getMsg(GamesManager gm);
 	};
 
 	static int						j	= 0;
 	boolean							creation;
+	@Getter
 	Hologram						hg;
 	String							name;
 	net.citizensnpcs.api.npc.NPC	npc;
@@ -109,7 +109,7 @@ public class NPC {
 		this.npc.spawn(new Location(this.w.getWorld(), this.x, this.y, this.z));
 
 		this.hg = new Hologram("id" + j++, new Location(Bukkit.getServer().getWorld(this.world), this.x,
-				this.y + 2.7 + (this.name.contains("SkyWars") ? 0.6 : 0), this.z));
+				this.y + 2.7, this.z));
 
 		Main.getMainInstance().getHologramManager().addActiveHologram(this.hg);
 	}

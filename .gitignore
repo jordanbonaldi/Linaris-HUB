@@ -136,3 +136,17 @@ build/libs/Linaris-HUB-1.2-SNAPSHOT.jar
 build/resources/main/config.yml
 build/resources/main/plugin.yml
 build/tmp/jar/MANIFEST.MF
+.idea/modules/Linaris-SkyBlock.test.iml
+.idea/modules/Linaris-SkyBlock.main.iml
+.idea/modules/Linaris-SkyBlock.iml
+.idea/modules/Linaris-PvPBoxs.test.iml
+.idea/modules/Linaris-PvPBoxs.main.iml
+.idea/modules/Linaris-PvPBoxs.iml
+.idea/modules/Linaris-Faction.test.iml
+.idea/modules/Linaris-Faction.main.iml
+.idea/modules/Linaris-Faction.iml
+.idea/libraries/Gradle___Vault_1_6_7_.xml
+.idea/libraries/Gradle___MassiveCore_.xml
+.idea/libraries/Gradle___Factions_.xml
+.idea/libraries/Gradle___askyblock_.xml
+.idea/encodings.xml
