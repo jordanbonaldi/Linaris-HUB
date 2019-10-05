@@ -21,7 +21,7 @@ public class Scoreboard extends ScoreBoardModule {
 	public Scoreboard(final BukkitAPI game) {
 		super(game);
 
-		this.NAME = new RainbowEffect("?????", "§l", "§6§l", 40);
+		this.NAME = new RainbowEffect("BattleMine", "§l", "§6§l", 40);
 
 	}
 
@@ -71,7 +71,7 @@ public class Scoreboard extends ScoreBoardModule {
 		lines.put(4, "§e");
 		lines.put(3, "§fJoueurs§f: §a" + this.getOnlinePlayers());
 		lines.put(2, "§a");
-		lines.put(1, "§e► play.???.fr");
+		lines.put(1, "§e► play.battlemine.fr");
 
 		if (lines.isEmpty())
 			return;

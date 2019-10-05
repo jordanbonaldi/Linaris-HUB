@@ -51,7 +51,7 @@ public class JoinAndLeave implements Listener {
 
 		this.setInventory(p);
 
-		TitleUtils.sendTitle(p.getPlayer(), "§c???...", "§aPvPTraining, PvPFaction, SkyBlock, SkyPvP");
+		TitleUtils.sendTitle(p.getPlayer(), "§cBattleMine...", "§aPvPTraining, PvPFaction, SkyBlock, SkyPvP");
 
 		this.setArmors(p.getPlayer());
 
