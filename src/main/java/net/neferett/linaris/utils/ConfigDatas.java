@@ -11,7 +11,7 @@ public class ConfigDatas {
 		return instance == null ? instance = new ConfigDatas() : instance;
 	}
 
-	Location spawn = new Location(Bukkit.getWorld("world"), 0.470, 103, -3.5, (float)-1, (float) 2.4);
+	Location spawn = new Location(Bukkit.getWorld("world"), 11.5, 106, -42.5, (float)-89, (float) 1);
 
 	public Location getSpawn() {
 		return this.spawn;

@@ -60,12 +60,11 @@ public class Scoreboard extends ScoreBoardModule {
 
 		bar.setObjectiveName(this.title);
 		lines.put(12, "§f");
-		lines.put(11, "§fGrade:" + (data.getRank().getColor() == '7' ? "§f"
-				: "§" + data.getRank().getColor() + " " + data.getRank().getName()));
+		lines.put(11, "§fGrade: " + data.getRank().getPrefix(data));
 		lines.put(10, "§2");
 		lines.put(9, "§fJeu préféré§f: §e" + GamesEnum.getMostPlayedGame(data));
 		lines.put(8, "§1");
-		lines.put(7, "Senzus: §e" + data.getTokens());
+		lines.put(7, "Coins: §e" + data.getTokens());
 		lines.put(6, "§9");
 		lines.put(5, "§fHub§f: §e#" + BukkitAPI.get().getServerInfos().getServerName().charAt(3));
 		lines.put(4, "§e");

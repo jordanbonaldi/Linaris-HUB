@@ -24,7 +24,7 @@ public class Stats extends MenuItem {
 	}
 
 	public Stats() {
-		super("§6Stats et Succ§s", GlowUtils.addGlow(new ItemStack(Material.BOOK_AND_QUILL)), "§7Vos stats et succés");
+		super("§6Stats et Succès", GlowUtils.addGlow(new ItemStack(Material.BOOK_AND_QUILL)), "§7Vos stats et succés");
 	}
 
 	@Override

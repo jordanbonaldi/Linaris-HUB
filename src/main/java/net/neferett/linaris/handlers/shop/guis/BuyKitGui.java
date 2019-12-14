@@ -31,15 +31,15 @@ public class BuyKitGui extends GuiScreen {
 			setItemLine(item.getItemUIBuy(getPlayer()), 2	, 5);
 			
 			
-			setItemLine(ItemStackUtils.createRenamedItemStack(Material.SLIME_BALL, 1, (short)0, "net.neferett.linarisa✔ Confirmer ✔", null), 3, 4);
-			setItemLine(ItemStackUtils.createRenamedItemStack(Material.BARRIER, 1, (short)0, "net.neferett.linarisc✖ Annuler ✖", null), 3, 6);
+			setItemLine(ItemStackUtils.createRenamedItemStack(Material.SLIME_BALL, 1, (short)0, "§a✔ Confirmer ✔", null), 3, 4);
+			setItemLine(ItemStackUtils.createRenamedItemStack(Material.BARRIER, 1, (short)0, "§c✖ Annuler ✖", null), 3, 6);
 
 			
 			
 			setItemLine(new ProfileItem(getPlayer()).getStaticItem(), 4	, 1);
 		
 			
-			setItemLine(ItemStackUtils.createRenamedItemStack(Material.ARROW, 1, (short)0, "net.neferett.linarisfRevenir en arrière", null), 4, 9);
+			setItemLine(ItemStackUtils.createRenamedItemStack(Material.ARROW, 1, (short)0, "§fRevenir en arrière", null), 4, 9);
 		});
 		
 	}

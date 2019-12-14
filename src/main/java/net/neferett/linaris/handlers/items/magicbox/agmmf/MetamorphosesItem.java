@@ -19,7 +19,7 @@ public class MetamorphosesItem extends MenuItem {
 	}
 	
 	public MetamorphosesItem() {
-		super("§aM§tamorphoses", new ItemStack(Material.BLAZE_ROD),"§7Changer d'apparence !","");
+		super("§aMétamorphoses", new ItemStack(Material.BLAZE_ROD),"§7Changer d'apparence !","");
 	}
 
 	@Override

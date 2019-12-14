@@ -83,8 +83,11 @@ public class Main extends API {
 
 	 public void loadHolos() {
 		 HologramsManager.get().addHologram("box1", new
-						 Location(Bukkit.getWorld("world"), 6.448, 104.812, 3.513),"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
-		 HologramsManager.get().addHologram("box2", new Location(Bukkit.getWorld("world"), -5.564, 104.812, 3.522), "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+						 Location(Bukkit.getWorld("world"), 15.5, 108, -46.5),"§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+		 HologramsManager.get().addHologram("box2", new Location(Bukkit.getWorld("world"), 15.5, 108, -38.5), "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+		 HologramsManager.get().addHologram("box3", new Location(Bukkit.getWorld("world"), 7.5, 108, -46.5), "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+		 HologramsManager.get().addHologram("box4", new Location(Bukkit.getWorld("world"), 7.5, 108, -38.5), "§dBoite Mystere", "§eCrate §f- §aClique droit pour ouvrir", "§eClique gauche §7pour regarder les §cGains");
+
 	 }
 
 	@Override

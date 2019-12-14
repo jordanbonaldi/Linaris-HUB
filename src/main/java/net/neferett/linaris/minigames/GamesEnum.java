@@ -28,7 +28,7 @@ public enum GamesEnum {
 	// 6),
 	FACTION(
 			new GamesManager(Games.FacMagie, null, false, false),
-			new NPC("Faction", EntityType.VILLAGER, "world", 6.5, 103, 14.5, false),
+			new NPC("Faction", EntityType.VILLAGER, "world", 30.5, 105, -50.5, false),
 			Material.GOLDEN_APPLE,
 			3,
 			2),
@@ -50,13 +50,13 @@ public enum GamesEnum {
 	// 6),
 	SKYBLOCK(
 			new GamesManager(Games.SKYBLOCK, null, false, false),
-			new NPC("SkyBlock", EntityType.VILLAGER, "world", -5.5, 103, 14.5, false),
+			new NPC("SkyBlock", EntityType.VILLAGER, "world", 33.5, 105, -45.5, false),
 			Material.GRASS,
 			5,
 			4),
 	SKYPVP(
 			new GamesManager(Games.SkyPvP, null, false, false),
-			new NPC("SkyPvP", EntityType.VILLAGER, "world", 10.5, 103, 26.5, false),
+			new NPC("SkyPvP", EntityType.VILLAGER, "world", 34.5, 105, -39.5, false),
 			Material.IRON_SWORD,
 			7,
 			2),
@@ -68,7 +68,7 @@ public enum GamesEnum {
 	// 6),
 	 TRAINING(
 	 new GamesManager(Games.PvPTraining, null, false, false),
-	 new NPC("PvPTraining", EntityType.VILLAGER, "world", -9.5, 103, 26.5,
+	 new NPC("PvPTraining", EntityType.VILLAGER, "world", 33.5, 105, -33.5,
 	 false),
 	 Material.WOOD_SWORD,
 	 5,
@@ -93,17 +93,15 @@ public enum GamesEnum {
 	}
 
 	public static List<String> getGamesPlayed(final PlayerData pd) {
-		return Arrays.asList(GamesEnum.values()).stream().map(e -> e.getN())
+		return Arrays.stream(GamesEnum.values()).map(GamesEnum::getN)
 				.filter((a) -> pd.contains(a.getName() + "_played"))
 				.sorted((a, b) -> (int) (pd.getLong(b.getName() + "_played") - pd.getLong(a.getName() + "_played")))
-				.map(e -> e.getName()).collect(Collectors.toList());
+				.map(NPC::getName).collect(Collectors.toList());
 	}
 
 	public static String getMostPlayedGame(final PlayerData pd) {
-		final NPC npc = Arrays.asList(GamesEnum.values()).stream().map(e -> e.getN())
-				.filter((a) -> pd.contains(a.getName() + "_played"))
-				.sorted((a, b) -> (int) (pd.getLong(b.getName() + "_played") - pd.getLong(a.getName() + "_played")))
-				.findFirst().orElse(null);
+		final NPC npc = Arrays.stream(GamesEnum.values()).map(GamesEnum::getN)
+				.filter((a) -> pd.contains(a.getName() + "_played")).min((a, b) -> (int) (pd.getLong(b.getName() + "_played") - pd.getLong(a.getName() + "_played"))).orElse(null);
 		if (npc == null)
 			return "Aucun";
 		return npc.getName();

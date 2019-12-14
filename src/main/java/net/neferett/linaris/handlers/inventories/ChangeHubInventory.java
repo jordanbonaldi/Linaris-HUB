@@ -1,5 +1,6 @@
 package net.neferett.linaris.handlers.inventories;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class ChangeHubInventory extends GuiScreen {
 	@Override
 	public void drawScreen() {
 		List<GameServer> hubs = BukkitAPI.get().getProxyDataManager().getServersByGameName(Games.LOBBY.getDisplayName());
-		List<GameServer> hub = hubs.stream().sorted((p1, p2) -> p1.getServName().replace("hub", "").compareTo(p2.getServName().replace("hub", ""))).collect(Collectors.toList());
+		List<GameServer> hub = hubs.stream().sorted(Comparator.comparing(p -> p.getServName().replace("hub", ""))).collect(Collectors.toList());
 		for (GameServer server : hub) {
 			if (!server.canJoin() || !server.canSee()) continue;
 			int number = Integer.parseInt(server.getServName().replace("hub", ""));
@@ -43,19 +44,19 @@ public class ChangeHubInventory extends GuiScreen {
 				ib.setDamage((short) 5);
 			}
 			
-			ib.setTitle("net.neferett.linaris6Hub " + number);
-			String addon = "net.neferett.linarisfFaible";
+			ib.setTitle("§6Hub " + number);
+			String addon = "§fFaible";
 			if (server.getPlayers() > 30) {
-				addon = "net.neferett.linariseMoyenne";
+				addon = "§eMoyenne";
 			} 
 			if (server.getPlayers() > 50) {
-				addon = "net.neferett.linaris6Forte";
+				addon = "§6Forte";
 			}
-			ib.addLores("net.neferett.linarise☼ net.neferett.linaris7Présence net.neferett.linarisf" + server.getPlayers() + " net.neferett.linaris7(" + addon + "net.neferett.linaris7) net.neferett.linarise☼");
+			ib.addLores("§e☼ §7Présence §f" + server.getPlayers() + " §7(" + addon + "§7) §e☼");
 			ib.setAmount(number);
 			addItem(number,ib.build());
 		}
-		setItemLine(-10, new ItemBuilder(Material.ARROW).setTitle("net.neferett.linarisfRevenir en arrière").build(), 6, 9);
+		setItemLine(-10, new ItemBuilder(Material.ARROW).setTitle("§fRevenir en arrière").build(), 6, 9);
 	}
 
 	public void setItemLine(int id, ItemStack item, int line, int slot) {

@@ -19,7 +19,7 @@ public class SwitchHub extends MenuItem {
 	}
 	
 	public SwitchHub() {
-		super("§6Changer de Hub", new ItemStack(Material.ENDER_PORTAL_FRAME),"§7Rejoindre le Hub d§sir§");
+		super("§6Changer de Hub", new ItemStack(Material.ENDER_PORTAL_FRAME),"§7Rejoindre le Hub désiré");
 	}
 
 	@Override

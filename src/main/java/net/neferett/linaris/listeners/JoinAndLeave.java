@@ -42,7 +42,7 @@ public class JoinAndLeave implements Listener {
 
 		p.teleport(ConfigDatas.getInstance().getSpawn());
 
-		if (p.getPlayerData().getRank().getVipLevel() >= 4) {
+		if (p.getPlayerData().getRank().getVipLevel() >= 1) {
 			p.setAllowFlight(true);
 			p.setFlying(true);
 		}

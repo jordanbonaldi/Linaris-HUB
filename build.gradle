@@ -29,8 +29,8 @@ repositories {
     mavenCentral()
 
     flatDir {
-        dirs '/Users/neferett/Documents/work/Minecraft/libs'
-        dirs '/Users/neferett/Documents/work/Minecraft/Linaris-API/target'
+        dirs 'C:\\Users\\Jordan\\iCloudDrive\\Documents\\work\\Thomas\\Linaris-API\\target'
+        dirs 'C:\\Users\\Jordan\\iCloudDrive\\Documents\\work\\Libs'
     }
 }
 
@@ -39,7 +39,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.4'
     implementation name: 'linaris-gameserver-0.0.1-SNAPSHOT'
     implementation name: 'Citizens'
-    implementation name: 'Holograms-2.4.1-SNAPSHOT'
+    implementation name: 'Holograms-2.9.1-SNAPSHOT'
     implementation name: 'spigot'
     annotationProcessor 'org.projectlombok:lombok:1.18.4'
 }
